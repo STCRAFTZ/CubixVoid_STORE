@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,150 +6,258 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CubixVoid Store</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+
 <style>
+
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Arial,sans-serif;
+font-family:'Orbitron',sans-serif;
 scroll-behavior:smooth;
 }
 
 body{
-background:#0a0a0a;
+background:
+radial-gradient(circle at center,rgba(255,0,0,.15),transparent 35%),
+linear-gradient(to bottom,#030303,#090909,#030303);
 color:white;
-text-align:center;
+overflow-x:hidden;
 }
 
-/* HEADER */
+/* Animated Particles */
+
+body::before{
+content:"";
+position:fixed;
+inset:0;
+background-image:
+radial-gradient(circle,#ff0000 1px,transparent 1px);
+background-size:60px 60px;
+opacity:.12;
+animation:particles 25s linear infinite;
+pointer-events:none;
+}
+
+@keyframes particles{
+from{transform:translateY(0);}
+to{transform:translateY(60px);}
+}
+
+/* Header */
+
 header{
-padding:50px 20px;
-background:linear-gradient(135deg,#ff8800,#ffaa00,#ffd700);
-color:black;
+padding:80px 20px;
+text-align:center;
+position:relative;
+overflow:hidden;
 }
 
-/* LOGO */
+/* Portal */
+
+header::before{
+content:"";
+position:absolute;
+width:550px;
+height:550px;
+left:50%;
+top:50%;
+transform:translate(-50%,-50%);
+border-radius:50%;
+border:4px solid rgba(255,0,0,.35);
+box-shadow:
+0 0 30px #ff0000,
+0 0 60px rgba(255,0,0,.4),
+inset 0 0 40px rgba(255,0,0,.4);
+animation:spin 25s linear infinite;
+z-index:-1;
+}
+
+@keyframes spin{
+from{transform:translate(-50%,-50%) rotate(0deg);}
+to{transform:translate(-50%,-50%) rotate(360deg);}
+}
+
+/* Logo */
+
 .logo{
-width:220px;
-margin-bottom:20px;
+width:260px;
+max-width:80%;
 filter:
-drop-shadow(0 0 10px #ffd700)
-drop-shadow(0 0 20px #ffae00)
-drop-shadow(0 0 35px #ff8800);
+drop-shadow(0 0 10px #ff0000)
+drop-shadow(0 0 25px #ff0000)
+drop-shadow(0 0 50px #990000);
 animation:floatLogo 3s ease-in-out infinite;
 }
 
 @keyframes floatLogo{
-0%{transform:translateY(0px);}
-50%{transform:translateY(-12px);}
-100%{transform:translateY(0px);}
+0%{transform:translateY(0);}
+50%{transform:translateY(-15px);}
+100%{transform:translateY(0);}
 }
 
+/* Title */
+
 header h1{
-font-size:60px;
-font-weight:bold;
-text-shadow:0 0 15px rgba(255,255,255,0.6);
+font-size:4rem;
+font-weight:900;
+margin-top:20px;
+text-shadow:
+0 0 10px #ff0000,
+0 0 25px #ff0000,
+0 0 50px #990000;
 }
 
 header p{
-font-size:18px;
+opacity:.85;
 margin-top:10px;
 }
 
-/* SECTIONS */
+/* Sections */
+
 .section{
-padding:60px 20px;
+padding:70px 20px;
+text-align:center;
 }
 
 .section h2{
-font-size:35px;
-margin-bottom:25px;
-color:#ffd700;
+font-size:2.2rem;
+margin-bottom:30px;
+color:#ff3b3b;
+text-shadow:0 0 12px #ff0000;
 }
 
-/* CARDS */
-.ranks,.crates{
+/* Server IP */
+
+.ip-box{
+max-width:650px;
+margin:auto;
+padding:25px;
+background:rgba(255,255,255,.04);
+border:1px solid rgba(255,0,0,.25);
+border-radius:20px;
+}
+
+#serverip{
+font-size:1.4rem;
+color:#00ff88;
+margin-bottom:15px;
+}
+
+/* Buttons */
+
+.btn{
+display:inline-block;
+padding:12px 25px;
+margin:8px;
+background:linear-gradient(135deg,#ff0000,#990000);
+border:none;
+border-radius:12px;
+color:white;
+font-weight:bold;
+cursor:pointer;
+text-decoration:none;
+transition:.3s;
+}
+
+.btn:hover{
+transform:translateY(-3px);
+box-shadow:
+0 0 20px #ff0000,
+0 0 40px rgba(255,0,0,.5);
+}
+
+/* Grid */
+
+.grid{
 display:flex;
 justify-content:center;
-gap:20px;
+gap:25px;
 flex-wrap:wrap;
+max-width:1200px;
+margin:auto;
 }
 
-.card,.crate{
-background:#151515;
-border:2px solid gold;
-border-radius:15px;
-padding:25px;
+/* Cards */
+
+.card{
 width:280px;
-transition:0.3s;
+padding:25px;
+background:rgba(15,15,15,.95);
+border:1px solid rgba(255,0,0,.35);
+border-radius:20px;
+transition:.3s;
+box-shadow:0 0 15px rgba(255,0,0,.15);
 }
 
-.card:hover,.crate:hover{
-transform:translateY(-8px);
-box-shadow:0 0 25px gold;
+.card:hover{
+transform:translateY(-8px) scale(1.03);
+box-shadow:
+0 0 25px rgba(255,0,0,.5),
+0 0 50px rgba(255,0,0,.25);
+}
+
+.card h3{
+font-size:1.5rem;
+margin-bottom:15px;
 }
 
 .price{
-font-size:28px;
+font-size:1.8rem;
+color:#ff5555;
+margin-bottom:15px;
 font-weight:bold;
-margin:15px 0;
 }
 
-/* BUTTONS */
-.buy-btn{
-padding:12px 25px;
-margin-top:15px;
-border:none;
-border-radius:10px;
+/* Badge */
+
+.badge{
+display:inline-block;
+padding:6px 12px;
+background:#ff0000;
+border-radius:20px;
+font-size:12px;
 font-weight:bold;
-cursor:pointer;
-background:linear-gradient(45deg,#ff8800,#ffd700);
-transition:0.3s;
-}
-
-.buy-btn:hover{
-transform:scale(1.05);
-box-shadow:0 0 20px gold;
-}
-
-.copy-btn{
-padding:12px 25px;
-margin-top:15px;
-border:none;
-border-radius:10px;
-font-weight:bold;
-cursor:pointer;
-background:#00ff00;
-transition:0.3s;
-}
-
-.copy-btn:hover{
-transform:scale(1.05);
-}
-
-/* SERVER IP */
-#serverip{
-font-size:24px;
-font-weight:bold;
-color:#00ff00;
-margin-top:10px;
+margin-bottom:10px;
+box-shadow:0 0 15px #ff0000;
 }
 
 /* QR */
+
 .qr{
-width:250px;
-border-radius:15px;
-box-shadow:0 0 25px gold;
+width:260px;
+max-width:90%;
+border-radius:20px;
 margin-top:20px;
+box-shadow:
+0 0 20px #ff0000,
+0 0 40px rgba(255,0,0,.4);
 }
 
-/* FOOTER */
-footer{
-margin-top:50px;
-padding:20px;
-background:black;
-border-top:2px solid gold;
+/* Payment Box */
+
+.claim{
+max-width:700px;
+margin:30px auto;
+text-align:left;
+line-height:2;
+padding:25px;
+background:rgba(255,255,255,.04);
+border-radius:20px;
+border:1px solid rgba(255,0,0,.25);
 }
+
+/* Footer */
+
+footer{
+padding:30px;
+margin-top:50px;
+text-align:center;
+border-top:1px solid rgba(255,0,0,.2);
+color:#aaa;
+}
+
 </style>
 
 <script>
@@ -159,89 +268,137 @@ alert("Server IP copied!");
 </script>
 
 </head>
+
 <body>
 
 <header>
 
-<img src="CubixVoid logo.png" alt="CubixVoid Logo" class="logo">
+<img src="logo.png" alt="CubixVoid Logo" class="logo">
 
-<h1>CubixVoid Store</h1>
+<h1>CUBIXVOID STORE</h1>
 
-<p>Official Minecraft Server Store</p>
+<p>Premium Minecraft Server Store</p>
 
 </header>
 
 <section class="section">
+
 <h2>🌐 SERVER IP</h2>
+
+<div class="ip-box">
 
 <p id="serverip">CubixVoid.aternos.me</p>
 
-<button class="copy-btn" onclick="copyIP()">
+<button class="btn" onclick="copyIP()">
 📋 COPY IP
 </button>
+
+<a href="YOUR_DISCORD_INVITE_LINK" class="btn">
+💬 JOIN DISCORD
+</a>
+
+</div>
+
 </section>
 
 <section class="section">
+
 <h2>👑 RANKS</h2>
 
-<div class="ranks">
+<div class="grid">
 
 <div class="card">
+
 <h3>VIP</h3>
+
 <div class="price">₹99 / Month</div>
-<button class="buy-btn" onclick="location.href='#payment'">
+
+<a href="#payment" class="btn">
 BUY NOW
-</button>
+</a>
+
 </div>
 
 <div class="card">
+
+<span class="badge">
+MOST POPULAR
+</span>
+
 <h3>ELITE</h3>
+
 <div class="price">₹159 / Month</div>
-<button class="buy-btn" onclick="location.href='#payment'">
+
+<a href="#payment" class="btn">
 BUY NOW
-</button>
+</a>
+
 </div>
 
 </div>
+
 </section>
 
 <section class="section">
-<h2>🔑 KEYS & KITS</h2>
 
-<div class="crates">
+<h2>🔑 KEYS</h2>
 
-<div class="crate">
+<div class="grid">
+
+<div class="card">
+
 <h3>VIP KEY</h3>
-<p>₹29 Per Key</p>
-<button class="buy-btn" onclick="location.href='#payment'">
+
+<div class="price">₹29 Per Key</div>
+
+<a href="#payment" class="btn">
 BUY NOW
-</button>
+</a>
+
 </div>
 
-<div class="crate">
+<div class="card">
+
 <h3>ELITE KEY</h3>
-<p>₹49 Per Key</p>
-<button class="buy-btn" onclick="location.href='#payment'">
+
+<div class="price">₹49 Per Key</div>
+
+<a href="#payment" class="btn">
 BUY NOW
-</button>
+</a>
+
 </div>
 
-<div class="crate">
+<div class="card">
+
 <h3>VOTE KEY</h3>
+
 <p>Obtained By Voting Only</p>
+
 </div>
 
 </div>
+
 </section>
 
 <section class="section">
+
 <h2>🎥 YOUTUBER RANK</h2>
 
-<p>Upload 2 videos on CubixVoid every week.</p>
+<div class="card" style="max-width:650px;margin:auto;">
+
+<p>Upload 2 videos every week.</p>
+
 <br>
+
 <p>Each video must be 30+ minutes long.</p>
+
 <br>
-<p>Promote the server and store.</p>
+
+<p>Promote CubixVoid and the store.</p>
+
+</div>
+
 </section>
 
 <section id="payment" class="section">
@@ -252,27 +409,35 @@ BUY NOW
 
 <img src="qr.png" alt="Payment QR Code" class="qr">
 
-<br><br>
+<div class="claim">
 
 <h3>How To Claim Your Purchase</h3>
-
-<br>
 
 <p>1. Complete the payment.</p>
 <p>2. Save your Transaction ID.</p>
 <p>3. Join our Discord server.</p>
 <p>4. Share your Transaction ID with staff.</p>
-<p>5. Receive your purchased rank, key, or kit.</p>
+<p>5. Receive your purchased rank or key.</p>
 
 <br>
 
-<p><b>To receive your purchase, share your Transaction ID on our Discord server after completing payment.</b></p>
+<p>
+<b>
+Important:
+Share your Transaction ID on Discord after payment to receive your items.
+</b>
+</p>
+
+</div>
 
 </section>
 
 <footer>
-© 2026 CubixVoid Store
+
+© 2026 CubixVoid Store • All Rights Reserved
+
 </footer>
 
 </body>
 </html>
+```
